@@ -1,7 +1,0 @@
-#include<graphics>
-int main()
-{
-	initwindow(400,400);
-	line(100,110,200,220);
-	return 0;
-}
