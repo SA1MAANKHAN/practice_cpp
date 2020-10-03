@@ -14,14 +14,28 @@ int main(){
      getch();
 }
 void bresenhamEllipse(int xCenter, int yCenter , int rx,int ry ){
-    long rx2 = rx*rx,
+    int rx2 = rx*rx,
          ry2 = ry*ry,
          x=0,
          y=ry,
          p=0;
 
-void ellipsePlotPoints(int xCenter, int yCenter , x ,y , BLUE );
+int ellipsePlotPoints(int xCenter, int yCenter ,int x ,int y );
+
    p =(int)(ry2-(rx2*ry)+(.25*rx2));
+
+   while(2*ry2*x <2*rx2){
+    x++;
+    if(p<0)
+        p+=(int)2*ry2*x+ry2;
+    else{
+        y--;
+        p+=(int)2*ry2*x+ry2-2*rx2*y;
+   }
+ellipsePlotPoints(xCenter,yCenter,x,y);
+   }
+   p =(int)(ry2*(x+.5)*(x+.5)+rx2*(y-1)*(y-1)-rx2*ry2);
+
    while(y>0){
     y--;
     if(p>0){
@@ -30,14 +44,14 @@ void ellipsePlotPoints(int xCenter, int yCenter , x ,y , BLUE );
         x++;
         p+rx2+2*ry2*x-2*rx2*y;
     }
-   void ellipsePlotPoints(int xCenter, int yCenter , x ,y , RED );
+int ellipsePlotPoints(int xCenter, int yCenter ,int x ,int y );
 
    }
 }
-void ellipsePlotPoints(int xCenter, int yCenter ,int x ,int y , int color ){
-    putpixel(xCenter+x,yCenter+y,color);
-    putpixel(xCenter-x,yCenter+y,color);
-    putpixel(xCenter+x,yCenter-y,color);
-    putpixel(xCenter-x,yCenter-y,color);
+void ellipsePlotPoints(int xCenter, int yCenter ,int x ,int y ){
+    putpixel(xCenter+x,yCenter+y,4);
+    putpixel(xCenter-x,yCenter+y,4);
+    putpixel(xCenter+x,yCenter-y,4);
+    putpixel(xCenter-x,yCenter-y,4);
  }
-//still pending https://www.youtube.com/watch?v=QjqI4cCVAx0
+// https://www.youtube.com/watch?v=QjqI4cCVAx0
