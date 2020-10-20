@@ -18,8 +18,9 @@ public:
   }
 
 };
+
 class singlylinkedlist{
-private:
+
 public:
   node* head;
 
@@ -38,7 +39,6 @@ public:
         temp = ptr;
       }
       ptr = ptr -> next;
-
     }
 
   return temp;
@@ -46,7 +46,7 @@ public:
   // appending
   void appendnode(node* n){
     if(nodeExist(n -> key) != NULL){
-      std::cout << "Node already exists with key valye" << n->key<<"Append another node woth different key value" << '\n';
+      std::cout << "Node already exists with key value" << n->key<<"Append another node woth different key value" << '\n';
     }else{
       if(head == NULL){
         head = n;
