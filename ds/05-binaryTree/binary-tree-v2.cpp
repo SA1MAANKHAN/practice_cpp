@@ -1,5 +1,6 @@
 #include<iostream>
 #include<queue>
+#include<stack>
 using namespace std;
 
 struct node{
@@ -70,7 +71,7 @@ int main(){
         if(option == 2){
             
             // print
-                queue<node*> queueTree ;
+                stack<node*> queueTree ;
  
                 queueTree.push(root);
 
@@ -79,7 +80,7 @@ int main(){
 
                 while(!queueTree.empty()){
 
-                ptr = queueTree.front();
+                ptr = queueTree.top();
                 queueTree.pop();
 
                 if(ptr->left != NULL){

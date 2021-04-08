@@ -5,7 +5,7 @@ struct node{
 
     int data;
     int priority;
-    node* next;
+    node* next = NULL;
 
 };
 
@@ -17,7 +17,6 @@ int main(){
 
     node* head = NULL;
     node* ptr;
-    node* newNode = new node;
 
 
     do{
@@ -51,16 +50,14 @@ int main(){
                     head = newNode;
                 }else{
 
-                while(ptr->next != NULL){
+                while((ptr->next != NULL) && (ptr->next->priority < newNode->priority)){
 
-                    if(ptr->next->priority > newNode->priority){
-                        newNode->next = ptr->next;
-                        ptr->next = newNode;
-                    }
-
-                    ptr = ptr->next;
+              ptr = ptr->next;
 
                 }
+
+                 newNode->next = ptr->next;
+                        ptr->next = newNode;
                  
                 }
             }
@@ -70,23 +67,67 @@ int main(){
         }
 
         if(option == 2){
+
+            if(head == NULL){
+                cout << "Queue is empty, cant print anything" << endl;
+            }else{
             // print 
 
         ptr = head;
         
         while(ptr != NULL){
 
-            cout << " { " << ptr->priority << ", " << ptr-> data << " } -->";
+            cout << " { " << ptr->priority << ", " << ptr-> data << ", " << ptr->next <<" } -->";
 
             ptr= ptr->next;
         
         }
 
         cout << "Null" << endl;
-        
+    }
+    }
+
+        if(option == 3){
+
+            int subOption;
+
+            if(head == NULL){
+                cout << "Queue is empty, cant remove anything" << endl;
+            }else{
+
+                cout << "Press 1 for deleting element with highest priority\n" << "Press 2 for deleting element with lowest priority " <<endl;
+                cin >> subOption;
+
+                if(subOption==1){
+
+                    cout << head->data << " with proprity " << head->priority << " has been deleted!" << endl;
+            
+                    head = head->next;
                 }
 
+
+                if(subOption==2){
+                    ptr = head;
+
+                    if(ptr->next == NULL){
+                        cout << head->data << " with proprity " << head->priority << " has been deleted!" << endl;
+                        head = NULL;
+                    }else{
+
+                        while(ptr ->next->next!= NULL){
         
+                        ptr = ptr->next;
+
+                        }
+
+
+                        cout << ptr->next->data << " with proprity " << head->next->priority << " has been deleted!" << endl;
+                        ptr->next = NULL;
+                    }
+    
+                }
+            }
+        }
 
     }while(option != 0);
 
