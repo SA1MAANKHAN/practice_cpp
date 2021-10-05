@@ -1,61 +1,95 @@
 #include<iostream>
 using namespace std;
 
-int swapItem(int x , int y){
-    int temp;
 
-    temp = x;
-    x = y;
-    y = temp;
+int merge(int *array, int start, int mid, int end) {
+   int i, j, k, len1, len2;
 
-    return x , y;
+   len1 = mid+1-start;
+   len2 = end-mid;
+   int arr1[len1], arr2[len2];
+
+
+   for(i = 0; i<len1; i++){
+      arr1[i] = array[start+i];
+   }
+
+   for(j = 0; j<len2; j++){
+      arr2[j] = array[mid+1+j];
+   }
+
+   i = 0; 
+   j = 0; 
+   k = start;
+
+   while(i < len1 && j<len2) {
+      if(arr1[i] <= arr2[j]) {
+         array[k] = arr1[i];
+         i++;
+      }else{
+         array[k] = arr2[j];
+         j++;
+      }
+      k++;
+   }
+   while(i<len1) {       
+      array[k] = arr1[i];
+      i++; k++;
+   }
+   while(j<len2) {     
+      array[k] = arr2[j];
+      j++; k++;
+   }
+
+return 0;
+
 }
 
-int merge(int* arr1 , int* arr2){
 
-    
+int mergeSort(int* array , int start, int end){
 
-    int len1 = sizeof(arr1)/sizeof(arr1[0]);
-    int len2 = sizeof(arr2)/sizeof(arr2[0]);
+int mid;
 
-    int array[len1 + len2];
-
-    int count = 0;
-
-    int 
-
-    while(count <= len1 + len2 ){
-
-
-
-
-
-    
-
-        if(arr1[i] > arr2[j]){
-arr[]
-        }
-
-    }
-
-
-     
-
-}
-
-int mergeSort(int array , int start, int end){
-
-    if (start > end ){
-        return array;
+    if (start >= end ){
+        return 0;
     }else{
-     int mid = (start + end)/2;
-     int subArray1 =   mergeSort(array, start , mid -1);
-     int subArray2 =   mergeSort(array, mid , end);
 
-     return merge(&subArray1 , &subArray2);
+        mid = (start +end) /2;
+
+        mergeSort(array, start, mid);
+        mergeSort(array, mid+1, end);
+
+    merge(array, start, mid, end);
+
+     return 0;
     }
 
 }
+
+int quickSort(int* arr, int pivot, int p, int q){
+
+    if(arr[p]>arr[pivot]){
+
+       int temp = arr[p];
+       arr[p] = arr[pivot];
+       arr[pivot] = temp;
+    
+    }else{
+     p++;
+    }
+
+    if(arr[q]<arr[pivot]){
+
+       int temp = arr[q];
+       arr[q] = arr[pivot];
+       arr[pivot] = temp;
+    
+    }else{
+     q++;
+    }
+    
+}
+
 
 int main(){
 
@@ -77,7 +111,7 @@ int main(){
     
     do{
 
-        cout << "Press 1 for bubble sort\nPress 2 for selection sort\nPress 3 for insertion sort\nPress 4 for shell sort\n" ;
+        cout << "Press 1 for bubble sort\nPress 2 for selection sort\nPress 3 for insertion sort\nPress 4 for shell sort\nPress 5 for merge sort\nPress 6 for quick sort\n" ;
         cin >> option;
 
         if (option == 1){
@@ -250,13 +284,26 @@ int main(){
         if(option == 5){
             // merge sort 
 
+        mergeSort(arr, 0, n-1);
 
+         cout << "This is your array , sorted by merge sort, trust me!" << endl;
 
+                        for(int i=0;i<n;i++){
+                            cout << "[" << arr[i] << "]" ;
+                        }
 
-
-
-
+                        cout << endl;
             
+        }
+
+        if(option == 6){
+
+    int pivot = 0 ;
+    int p = 0;
+    int q = n; 
+
+        quickSort(arr, pivot, p, q)
+
         }
 
 
